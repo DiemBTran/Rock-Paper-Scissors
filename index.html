@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"></met>
+</head>
+<body>
+    <script>
+        let currentScore=0;
+        function getRandomInt(max){ //creates a random number generator to allow computer to pick bw 3 options
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        function computerPlay(){ //randomly returns rock, paper, scissors to make comp play
+            let computerRandomNum = getRandomInt(3);
+            let computerChoice ="";
+            if (computerRandomNum == 0){
+                computerChoice="rock";
+            } else if (computerRandomNum == 1){
+                computerChoice="paper";
+            } else{
+                computerChoice="scissors";
+            }
+            return computerChoice;
+        }
+        function playRound(playerSelection, computerSelection){ //plays a round of RPS and declares result
+            if (playerSelection == "rock" && computerSelection == "rock"){
+                alert("Wow, great minds think alike! We both chose rock. It's a tie! Score: " + currentScore);
+            } else if(playerSelection == "rock" && computerSelection == "paper"){
+                alert("Ha! You chose rock, and I chose paper. I win :-) Score: " + currentScore);
+            } else if(playerSelection == "rock" && computerSelection == "scissors"){
+                currentScore++;
+                alert("Owie. You chose rock and I chose scissors. You win :-( Score: " + currentScore);
+            } else if(playerSelection == "paper"&& computerSelection == "paper"){
+                alert("Wow, great minds think alike! We both chose paper. It's a tie! Score: " + currentScore);
+            } else if(playerSelection == "paper" && computerSelection == "rock"){
+                currentScore++;
+                alert("Owie. You chose paper and I chose rock. You win :-( Score: " + currentScore);
+            } else if(playerSelection == "paper" && computerSelection == "scissors"){
+                alert("Ha! You chose paper, and I chose scissors. I win :-) Score: " + currentScore);
+            } else if(playerSelection == "scissors" && computerSelection == "scissors"){
+                alert("Wow, great minds think alike! We both chose scissors. It's a tie! Score: " + currentScore);
+            } else if(playerSelection == "scissors" && computerSelection == "rock"){
+                alert("Ha! You chose scissors, and I chose rock. I win :-) Score: " + currentScore);
+                currentScore++;
+            } else if(playerSelection == "scissors" && computerSelection == "paper"){
+                alert("Owie. You chose scissors and I chose paper. You win :-( Score: " + currentScore);
+            }
+        }
+        function game(){//keeps score and reports winner of game
+            for (let i= 0; i<5; i++){
+                let playerPrompt = prompt("Play against the computer! Choose rock, paper, or scissors.")
+                let playerSelection = playerPrompt.toLowerCase(); //turns the player's prompt input into all lowercase
+                let computerSelection = computerPlay();
+                console.log(playRound(playerSelection, computerSelection));
+            }
+            if (currentScore <= 2){
+                alert("Your score is " + currentScore + " out of 5. You lose :/");
+            } else{
+                alert("Your score is " + currentScore + " out of 5. You win! :)");
+            }
+        }
+        console.log(game());
+    </script>
+</body>
+</html>
